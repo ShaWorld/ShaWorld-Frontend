@@ -9,7 +9,6 @@ const SignIn = () => {
                 <S.ErrorText>이메일 형식이 올바르지 않습니다.</S.ErrorText>
                 <S.InputBox placeholder="이메일" name="email" autoComplete="off" />
                 <S.InputBox type="password" placeholder="비밀번호" name="password" />
-                {/* <S.InitPassword>비밀번호 초기화</S.InitPassword> */}
                 <S.Button>로그인</S.Button>
                 <S.DividingLine />
                 <S.Button>회원가입</S.Button>
