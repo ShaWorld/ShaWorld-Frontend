@@ -1,20 +1,19 @@
-// pages/index.tsx
-
-import React, { useState } from 'react';
-import Head from 'next/head';
+import React from 'react';
+import SignIn from '../components/SignIn/SignIn';
 
 export default function Home() {
-    const [text, setText] = useState<string>("자바스크립트");
-
-    setTimeout(() => {
-        setText("타입스크립트");
-    }, 1000);
-
     return (
-        <div className="container">
-            <div>
-                <span>{text} 적응 완료</span>
-            </div>
-        </div>
+        <React.Fragment>
+            <style jsx global>{`
+                html, body, #__next {
+                    width: 100%;
+                    height: 100vh;
+                    margin: 0;
+                    display: flex;
+                    justify-content: center
+                }`}
+            </style>
+            <SignIn />
+        </React.Fragment>
     )
 }
