@@ -75,6 +75,7 @@ export const Button = styled.button`
     margin: 20px 0 20px 0;
     outline: none;
     border: none;
+    cursor: pointer;
 `;
 
 export const DividingLine = styled.div`
