@@ -30,17 +30,12 @@ export const Logo = styled.div`
     font-size: 30px;
 `;
 
-export const Button = styled.button`
+export const InputFormWrapper = styled.div`
     width: 100%;
-    height: 50px;
-    background: #4F4646;
-    color: #fff;
-    font-size: 20px;
-    border-radius: 10px;
-    margin: 14px 0 20px 0;
-    outline: none;
-    border: none;
-    cursor: pointer;
+    height: 310px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 `;
 
 export const LongInputBox = styled.input`
@@ -61,12 +56,26 @@ export const LongInputBox = styled.input`
     }
 `;
 
-export const ErrorText = styled.p`
+export const ErrorText = styled.p<{isError: boolean}>`
     width: calc(100% - 20px);
     text-align: left;
     font-size: 13px;
     color: #FF0000;
     margin: 0;
+    visibility: ${props => props.isError ? 'inherit': 'hidden'};
+`;
+
+export const Button = styled.button`
+    width: 100%;
+    height: 50px;
+    background: #4F4646;
+    color: #fff;
+    font-size: 20px;
+    border-radius: 10px;
+    margin: 14px 0 20px 0;
+    outline: none;
+    border: none;
+    cursor: pointer;
 `;
 
 export const BottomText = styled.p`
