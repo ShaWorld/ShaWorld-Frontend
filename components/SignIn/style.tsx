@@ -31,6 +31,7 @@ export const Logo = styled.div`
 `;
 
 export const ErrorText = styled.p`
+    visibility: hidden;
     font-size: 13px;
     color: #FF0000;
     margin: 0;
