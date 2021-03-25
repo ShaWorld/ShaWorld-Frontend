@@ -1,6 +1,6 @@
 import React, { useState, FC } from "react";
-import { signUp } from "../../lib/auth/SignUp";
-import { SignUpRequest } from "../../lib/payloads/SignUp";
+import { signUp } from "../../utils/api/signup";
+import { SignUpRequest } from "../../utils/api/signup/payload";
 import * as S from "./style";
 
 const SignUp: FC = () => {
