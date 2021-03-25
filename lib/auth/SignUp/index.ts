@@ -11,28 +11,35 @@ export const signUp = async (data: SignUpRequest) => {
         password: data.password,
         passwordConfirm: data.passwordConfirm,
       })
-      .then((result) => result);
+      .then((result) => {
+        if (result.status == 201) {
+          console.log("modal on");
+        }
+      });
   } catch (e) {
     switch (e.response.status) {
       case 400: {
-        console.log("잘못된 형식입니다.");
+        window.alert("잘못된 형식입니다.");
+        location.reload();
         break;
       }
       case 409: {
         switch (e.response.data.code) {
           case "EMAIL_DUPLICATION":
-            console.log("이메일 중복");
+            window.alert("이미 사용중인 이메일입니다.");
+            location.reload();
             break;
           case "NICKNAME_DUPLICATION":
-            console.log("닉네임 중복");
+            window.alert("이미 사용중인 닉네임입니다.");
+            location.reload();
             break;
           default:
-            console.log(1);
+            console.log("알 수 없는 오류");
         }
         break;
       }
       default:
-        console.log(1);
+        console.log("알 수 없는 오류");
     }
   }
 };
