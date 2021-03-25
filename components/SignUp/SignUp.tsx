@@ -1,40 +1,22 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../reducers";
-import { actions } from "../../reducers/signUp";
+import React, { useState, FC } from "react";
 import { signUp } from "../../lib/auth/SignUp";
-import { errorObj, SignUpRequest } from "../../lib/payloads/SignUp";
+import { SignUpRequest } from "../../lib/payloads/SignUp";
 import * as S from "./style";
 
-const SignUp = () => {
-  const dispatch = useDispatch();
-
-  const {
-    emailErrorText,
-    nicknameErrorText,
-    passwordErrorText,
+const SignUp: FC = () => {
+  const [emailErrorText, changeEmailErrorText] = useState<string>("");
+  const [nicknameErrorText, changeNicknameErrorText] = useState<string>("");
+  const [passwordErrorText, changePasswordErrorText] = useState<string>("");
+  const [
     passwordConfirmErrorText,
-  } = useSelector(
-    (state: RootState) =>
-      state.signUpReducer || {
-        emailErrorText: "이메일 에러",
-        nicknameErrorText: "닉네임 에러",
-        passwordErrorText: "비밀번호 에러",
-        passwordConfirmErrorText: "비밀번호 재설정 에러",
-      }
-  );
+    changePasswordConfirmErrorText,
+  ] = useState<string>("");
 
   const [signUpForm, setSignUpForm] = useState<SignUpRequest>({
     email: "",
     nickname: "",
     password: "",
     passwordConfirm: "",
-  });
-  const [errorObj, setErrorObj] = useState<errorObj>({
-    emailError: false,
-    nicknameError: false,
-    passwordError: false,
-    passwordConfirmError: false,
   });
 
   const onChangeForm = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -44,19 +26,30 @@ const SignUp = () => {
     });
   };
 
+  function callFormatCheckFunc(): boolean {
+    const emailError = checkEmailFormat(),
+      nicknameError = checkNicknameFormat(),
+      passwordError = checkPasswordFormat(),
+      passwordConfirmError = checkPasswordConfirmFormat();
+
+    return emailError || nicknameError || passwordError || passwordConfirmError;
+  }
+
   function checkEmailFormat(): boolean {
     if (!signUpForm.email.includes("@")) {
-      dispatch(actions.changeEmailErrorText("올바른 이메일 형식이 아닙니다."));
+      changeEmailErrorText("올바른 이메일 형식이 아닙니다.");
       return true;
     }
+    changeEmailErrorText("");
     return false;
   }
 
   function checkNicknameFormat(): boolean {
     if (signUpForm.nickname.length < 2 || signUpForm.nickname.length > 8) {
-      dispatch(actions.changeNicknameErrorText("2 ~ 8자"));
+      changeNicknameErrorText("2 ~ 8자");
       return true;
     }
+    changeNicknameErrorText("");
     return false;
   }
 
@@ -67,13 +60,10 @@ const SignUp = () => {
       signUpForm.password.length > 20 ||
       !passwordRegExp.test(signUpForm.password)
     ) {
-      dispatch(
-        actions.changePasswordErrorText(
-          "8 ~ 20자 (알파벳 소문자, 숫자, 특수기호)"
-        )
-      );
+      changePasswordErrorText("8 ~ 20자 (알파벳 소문자, 숫자, 특수기호)");
       return true;
     }
+    changePasswordErrorText("");
     return false;
   }
 
@@ -82,30 +72,46 @@ const SignUp = () => {
       signUpForm.passwordConfirm !== signUpForm.password ||
       signUpForm.password == ""
     ) {
-      dispatch(
-        actions.changePasswordConfirmErrorText("비밀번호가 일치하지 않습니다.")
-      );
+      changePasswordConfirmErrorText("비밀번호가 일치하지 않습니다.");
       return true;
     }
-    return false;
-  }
-
-  function checkNoError(): boolean {
-    if (Object.values(errorObj).filter((item) => item == false).length != 4)
-      return true;
+    changePasswordConfirmErrorText("");
     return false;
   }
 
   const onSubmitSignUpForm = () => {
-    setErrorObj({
-      ...errorObj,
-      emailError: checkEmailFormat(),
-      nicknameError: checkNicknameFormat(),
-      passwordError: checkPasswordFormat(),
-      passwordConfirmError: checkPasswordConfirmFormat(),
-    });
-    if (checkNoError()) return;
-    signUp(signUpForm);
+    if (callFormatCheckFunc()) return;
+    signUp(signUpForm).then(
+      (res) => {
+        window.alert("회원가입에 성공했습니다.");
+        return Promise.resolve(res);
+      },
+      (err) => {
+        switch (err.response.status) {
+          case 400: {
+            window.alert("잘못된 형식입니다.");
+            location.reload();
+            break;
+          }
+          case 409: {
+            switch (err.response.data.code) {
+              case "EMAIL_DUPLICATION":
+                changeEmailErrorText("이미 사용중인 이메일입니다.");
+                break;
+              case "NICKNAME_DUPLICATION":
+                changeNicknameErrorText("이미 사용중인 닉네임입니다.");
+                break;
+              default:
+                console.log("알 수 없는 오류");
+            }
+            break;
+          }
+          default:
+            location.reload();
+        }
+        return Promise.reject(err.response);
+      }
+    );
   };
 
   return (
@@ -119,16 +125,14 @@ const SignUp = () => {
             onChange={onChangeForm}
             autoComplete="off"
           />
-          <S.ErrorText isError={errorObj.emailError}>
-            {emailErrorText}
-          </S.ErrorText>
+          <S.ErrorText isError={emailErrorText}>{emailErrorText}</S.ErrorText>
           <S.LongInputBox
             placeholder="닉네임"
             name="nickname"
             onChange={onChangeForm}
             autoComplete="off"
           />
-          <S.ErrorText isError={errorObj.nicknameError}>
+          <S.ErrorText isError={nicknameErrorText}>
             {nicknameErrorText}
           </S.ErrorText>
           <S.LongInputBox
@@ -138,7 +142,7 @@ const SignUp = () => {
             onChange={onChangeForm}
             autoComplete="off"
           />
-          <S.ErrorText isError={errorObj.passwordError}>
+          <S.ErrorText isError={passwordErrorText}>
             {passwordErrorText}
           </S.ErrorText>
           <S.LongInputBox
@@ -148,7 +152,7 @@ const SignUp = () => {
             onChange={onChangeForm}
             autoComplete="off"
           />
-          <S.ErrorText isError={errorObj.passwordConfirmError}>
+          <S.ErrorText isError={passwordConfirmErrorText}>
             {passwordConfirmErrorText}
           </S.ErrorText>
         </S.InputFormWrapper>
