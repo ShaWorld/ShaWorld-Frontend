@@ -1,11 +1,9 @@
-// pages/_app.tsx
-
 import { AppProps } from "next/app";
-import configureStore from "./_config";
+import { rootStore } from "../modules/store";
 import { Provider } from "react-redux";
 import "../styles/globals.css";
 
-const store = configureStore();
+const store = rootStore();
 
 function App({ Component, pageProps }: AppProps) {
   return (
