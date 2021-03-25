@@ -6,7 +6,6 @@ import { signUp } from "../../lib/auth/SignUp";
 import { errorObj, SignUpRequest } from "../../lib/payloads/SignUp";
 import * as S from "./style";
 
-// 리덕스 관련 코드 page로 빼기
 const SignUp = () => {
   const dispatch = useDispatch();
 
@@ -48,7 +47,6 @@ const SignUp = () => {
   function checkEmailFormat(): boolean {
     if (!signUpForm.email.includes("@")) {
       dispatch(actions.changeEmailErrorText("올바른 이메일 형식이 아닙니다."));
-
       return true;
     }
     return false;
@@ -107,7 +105,6 @@ const SignUp = () => {
       passwordConfirmError: checkPasswordConfirmFormat(),
     });
     if (checkNoError()) return;
-    console.log(1);
     signUp(signUpForm);
   };
 
