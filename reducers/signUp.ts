@@ -3,28 +3,19 @@ const SIGNUP_CHANGE_NICKNAME_ERROR_TEXT = "SIGNUP_CHANGE_NICKNAME_ERROR_TEXT" as
 const SIGNUP_CHANGE_PASSWORD_ERROR_TEXT = "SIGNUP_CHANGE_PASSWORD_ERROR_TEXT" as const;
 const SIGNUP_CHANGE_PASSWORD_CONFIRM_ERROR_TEXT = "SIGNUP_CHANGE_PASSWORD_CONFIRM_ERROR_TEXT" as const;
 
-export interface signUpState {
-  emailErrorText: string;
-  nicknameErrorText: string;
-  passwordErrorText: string;
-  passwordConfirmErrorText: string;
-}
-
-export const changeEmailErrorText = (emailErrorText: string) => ({
+const changeEmailErrorText = (emailErrorText: string) => ({
   type: SIGNUP_CHANGE_EMAIL_ERROR_TEXT,
   payload: emailErrorText,
 });
-export const changeNicknameErrorText = (nicknameErrorText: string) => ({
+const changeNicknameErrorText = (nicknameErrorText: string) => ({
   type: SIGNUP_CHANGE_NICKNAME_ERROR_TEXT,
   payload: nicknameErrorText,
 });
-export const changePasswordErrorText = (passwordErrorText: string) => ({
+const changePasswordErrorText = (passwordErrorText: string) => ({
   type: SIGNUP_CHANGE_PASSWORD_ERROR_TEXT,
   payload: passwordErrorText,
 });
-export const changePasswordConfirmErrorText = (
-  passwordConfirmErrorText: string
-) => ({
+const changePasswordConfirmErrorText = (passwordConfirmErrorText: string) => ({
   type: SIGNUP_CHANGE_PASSWORD_CONFIRM_ERROR_TEXT,
   payload: passwordConfirmErrorText,
 });
@@ -40,6 +31,13 @@ type SignUpAction =
   | ReturnType<typeof changeNicknameErrorText>
   | ReturnType<typeof changePasswordErrorText>
   | ReturnType<typeof changePasswordConfirmErrorText>;
+
+export interface signUpState {
+  emailErrorText: string;
+  nicknameErrorText: string;
+  passwordErrorText: string;
+  passwordConfirmErrorText: string;
+}
 
 const initialState: signUpState = {
   emailErrorText: "이메일 에러",
