@@ -4,9 +4,8 @@ const modalOn = (payload: string) => ({
   type: MODAL_ON,
   payload,
 });
-const modalOff = (payload: string) => ({
+const modalOff = () => ({
   type: MODAL_OFF,
-  payload,
 });
 
 export const actions = {
