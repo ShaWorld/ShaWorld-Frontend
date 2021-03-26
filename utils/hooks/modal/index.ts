@@ -10,8 +10,8 @@ const useModal = () => {
     modalOn: (payload: string) => {
       dispatch(actions.modalOn(payload));
     },
-    modalOff: (payload: string) => {
-      dispatch(actions.modalOff(payload));
+    modalOff: () => {
+      dispatch(actions.modalOff());
     },
   };
 
