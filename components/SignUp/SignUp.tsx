@@ -1,6 +1,7 @@
 import React, { useState, FC } from "react";
 import { signUp } from "../../utils/api/signup";
 import { SignUpRequest } from "../../utils/api/signup/payload";
+import useModal from "../../utils/hooks/modal";
 import * as S from "./style";
 
 const SignUp: FC = () => {
@@ -11,13 +12,15 @@ const SignUp: FC = () => {
     passwordConfirmErrorText,
     changePasswordConfirmErrorText,
   ] = useState<string>("");
-
   const [signUpForm, setSignUpForm] = useState<SignUpRequest>({
     email: "",
     nickname: "",
     password: "",
     passwordConfirm: "",
   });
+  const {
+    setState: { modalOn },
+  } = useModal();
 
   const onChangeForm = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSignUpForm({
@@ -83,7 +86,7 @@ const SignUp: FC = () => {
     if (callFormatCheckFunc()) return;
     signUp(signUpForm).then(
       (res) => {
-        window.alert("회원가입에 성공했습니다.");
+        modalOn("signUpAlert");
         return Promise.resolve(res);
       },
       (err) => {
