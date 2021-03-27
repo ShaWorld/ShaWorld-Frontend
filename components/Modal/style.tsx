@@ -4,8 +4,7 @@ export const ModalContentsWrapper = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
-  background-color: #000;
-  opacity: 0.3;
+  background-color: rgba(0, 0, 0, 0.3);
   justify-content: center;
   align-items: center;
   position: fixed;
@@ -19,4 +18,8 @@ export const Modal = styled.div`
   border-radius: 30px;
   box-sizing: border-box;
   padding: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
 `;

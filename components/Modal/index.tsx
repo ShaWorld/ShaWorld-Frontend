@@ -19,15 +19,19 @@ const Modal = () => {
 
   return (
     <React.Fragment>
-      <S.ModalContentsWrapper>
-        <S.Modal onClick={modalClickHandler}>
-          {state.type === MODAL_TYPE.signUpAlertModal ? (
-            <SignUpAlertModal deleteModal={deleteModal} />
-          ) : (
-            ""
-          )}
-        </S.Modal>
-      </S.ModalContentsWrapper>
+      {state.type !== "" ? (
+        <S.ModalContentsWrapper>
+          <S.Modal onClick={modalClickHandler}>
+            {state.type === MODAL_TYPE.signUpAlertModal ? (
+              <SignUpAlertModal deleteModal={deleteModal} />
+            ) : (
+              ""
+            )}
+          </S.Modal>
+        </S.ModalContentsWrapper>
+      ) : (
+        ""
+      )}
     </React.Fragment>
   );
 };
