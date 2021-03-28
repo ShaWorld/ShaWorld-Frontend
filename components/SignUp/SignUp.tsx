@@ -82,7 +82,7 @@ const SignUp: FC = () => {
     return false;
   }
 
-  const onSubmitSignUpForm = () => {
+  function onSubmitSignUpForm(): Promise<object> {
     if (callFormatCheckFunc()) return;
     signUp(signUpForm).then(
       (res) => {
@@ -106,6 +106,7 @@ const SignUp: FC = () => {
                 break;
               default:
                 console.log("알 수 없는 오류");
+                break;
             }
             break;
           }
@@ -115,7 +116,7 @@ const SignUp: FC = () => {
         return Promise.reject(err.response);
       }
     );
-  };
+  }
 
   return (
     <S.Container>
@@ -123,6 +124,7 @@ const SignUp: FC = () => {
         <S.Logo>로고</S.Logo>
         <S.InputFormWrapper>
           <S.LongInputBox
+            type="text"
             placeholder="이메일"
             name="email"
             onChange={onChangeForm}
@@ -130,6 +132,7 @@ const SignUp: FC = () => {
           />
           <S.ErrorText isError={emailErrorText}>{emailErrorText}</S.ErrorText>
           <S.LongInputBox
+            type="text"
             placeholder="닉네임"
             name="nickname"
             onChange={onChangeForm}
