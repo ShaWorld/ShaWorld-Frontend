@@ -49,6 +49,7 @@ const SignIn: FC = () => {
     signIn(signInForm).then(
       (res) => {
         router.push("/main");
+        localStorage.setItem("Authorization", `Bearer ${res.data.token}`);
         return Promise.resolve(res);
       },
       (err) => {
