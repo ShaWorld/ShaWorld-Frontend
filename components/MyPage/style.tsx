@@ -32,7 +32,7 @@ export const ContentsWrapper = styled.div`
   display: flex;
 `;
 
-export const ImgInput = styled.img`
+export const Img = styled.img`
   width: 252px;
   height: 252px;
   border-radius: 50%;
@@ -78,6 +78,19 @@ export const InfoText = styled.div`
   align-items: center;
 `;
 
+export const InfoNicknameInput = styled.input`
+  width: 300px;
+  height: 50px;
+  border-radius: 16px;
+  border: 2px solid #4f4646;
+  margin-top: 10px;
+  font-size: 20px;
+  color: #807777;
+  padding-left: 13px;
+  display: flex;
+  outline: none;
+`;
+
 export const InfoFixButton = styled.button`
   width: 111px;
   height: 50px;
@@ -90,6 +103,13 @@ export const InfoFixButton = styled.button`
   border: none;
   outline: none;
   cursor: pointer;
+`;
+
+export const nicknameErrorText = styled.p`
+  color: red;
+  margin: 0;
+  margin-left: 10px;
+  visibility: ${(props) => (props.isError ? "inherit" : "hidden")};
 `;
 
 export const ButtonWrapper = styled.div`
