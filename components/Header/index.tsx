@@ -13,7 +13,7 @@ const Header: FC = () => {
 
   useEffect(() => {
     getInfo();
-  }, [state]);
+  }, []);
 
   const getInfo = () => {
     getUserInfo().then(
