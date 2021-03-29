@@ -28,6 +28,7 @@ export const Logo = styled.div`
   justify-content: center;
   align-items: center;
   font-size: 30px;
+  cursor: pointer;
 `;
 
 export const InputFormWrapper = styled.div`
@@ -41,6 +42,7 @@ export const InputFormWrapper = styled.div`
 export const LongInputBox = styled.input`
   width: 100%;
   height: 50px;
+  line-height: 50px;
   border: 2px solid #4f4646;
   box-sizing: border-box;
   outline: none;
@@ -82,6 +84,7 @@ export const Button = styled.button`
 
 export const BottomText = styled.p`
   font-size: 10px;
+  font-family: initial;
   color: #707070;
   margin: 0;
 `;

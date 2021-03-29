@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import React, { useState, FC } from "react";
 import { signUp } from "../../utils/api/signup";
 import { SignUpRequest } from "../../utils/api/signup/payload";
@@ -5,6 +6,7 @@ import useModal from "../../utils/hooks/modal";
 import * as S from "./style";
 
 const SignUp: FC = () => {
+  const router = useRouter();
   const [emailErrorText, changeEmailErrorText] = useState<string>("");
   const [nicknameErrorText, changeNicknameErrorText] = useState<string>("");
   const [passwordErrorText, changePasswordErrorText] = useState<string>("");
@@ -121,7 +123,7 @@ const SignUp: FC = () => {
   return (
     <S.Container>
       <S.MainWrapper>
-        <S.Logo>로고</S.Logo>
+        <S.Logo onClick={() => router.push("/")}>로고</S.Logo>
         <S.InputFormWrapper>
           <S.LongInputBox
             type="text"
@@ -164,7 +166,7 @@ const SignUp: FC = () => {
         </S.InputFormWrapper>
         <S.Button onClick={onSubmitSignUpForm}>회원가입</S.Button>
       </S.MainWrapper>
-      <S.BottomText>©ShaWorld Inc. All Rights Reserved</S.BottomText>
+      <S.BottomText>©Sonwanseo co. All Rights Reserved</S.BottomText>
     </S.Container>
   );
 };
