@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from "react";
+import React, { FC } from "react";
 import { useRouter } from "next/router";
 import * as S from "./style";
 
@@ -11,7 +11,7 @@ const SignUpAlertModal: FC<Props> = ({ deleteModal }) => {
 
   const confirmSignUp = () => {
     deleteModal();
-    router.push("/");
+    router.push("/signin");
   };
 
   return (
