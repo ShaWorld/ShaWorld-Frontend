@@ -68,6 +68,10 @@ const SignIn: FC = () => {
             }
             break;
           }
+          case 404: {
+            setErrorText("일치하는 이메일이 없습니다.");
+            break;
+          }
           default:
             location.reload();
         }
