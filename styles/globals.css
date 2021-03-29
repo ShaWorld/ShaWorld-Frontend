@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Jua&display=swap");
+
 html,
 body,
 #__next {
@@ -15,4 +17,5 @@ a {
 
 * {
   box-sizing: border-box;
+  font-family: "Jua", sans-serif;
 }
