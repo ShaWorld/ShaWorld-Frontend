@@ -28,6 +28,7 @@ export const Logo = styled.div`
   justify-content: center;
   align-items: center;
   font-size: 30px;
+  cursor: pointer;
 `;
 
 export const ErrorText = styled.p`
@@ -88,6 +89,7 @@ export const DividingLine = styled.div`
 
 export const BottomText = styled.p`
   font-size: 10px;
+  font-family: initial;
   color: #707070;
   margin: 0;
 `;

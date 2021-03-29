@@ -48,8 +48,8 @@ const SignIn: FC = () => {
     if (callFormatCheckFunc()) return;
     signIn(signInForm).then(
       (res) => {
-        router.push("/main");
-        localStorage.setItem("Authorization", `Bearer ${res.data.token}`);
+        router.push("/");
+        localStorage.setItem("Authorization", `Bearer ${res.token}`);
         return Promise.resolve(res);
       },
       (err) => {
@@ -79,7 +79,7 @@ const SignIn: FC = () => {
   return (
     <S.Container>
       <S.MainWrapper>
-        <S.Logo>로고</S.Logo>
+        <S.Logo onClick={() => router.push("/")}>로고</S.Logo>
         <S.ErrorText isError={errorText}>{errorText}</S.ErrorText>
         <S.InputBox
           type="text"
@@ -98,7 +98,7 @@ const SignIn: FC = () => {
         <S.DividingLine />
         <S.Button onClick={() => router.push("/signup")}>회원가입</S.Button>
       </S.MainWrapper>
-      <S.BottomText>©ShaWorld Inc. All Rights Reserved</S.BottomText>
+      <S.BottomText>©Sonwanseo co. All Rights Reserved</S.BottomText>
     </S.Container>
   );
 };
