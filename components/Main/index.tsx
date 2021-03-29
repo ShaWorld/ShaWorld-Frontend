@@ -1,14 +1,7 @@
-import React, { FC, useEffect } from "react";
-import { useRouter } from "next/router";
+import React, { FC } from "react";
 import Header from "../Header";
 
 const Main: FC = () => {
-  // const router = useRouter();
-
-  // useEffect(() => {
-  //   router.push("/mypage");
-  // });
-
   return <Header />;
 };
 
