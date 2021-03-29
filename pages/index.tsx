@@ -1,6 +1,5 @@
-import React from 'react';
-import SignIn from '../components/SignIn/SignIn';
+import Main from "../components/Main";
 
 export default function Home() {
-    return <SignIn />
+  return <Main />;
 }
