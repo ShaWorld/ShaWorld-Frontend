@@ -1,5 +1,3 @@
-import { ResDefault } from "../../BASE";
-
 export interface errorObj {
   emailError: boolean;
   nicknameError: boolean;
@@ -13,7 +11,3 @@ export interface SignUpRequest {
   password: string;
   passwordConfirm: string;
 }
-
-export interface SignUpResponse {}
-
-export interface SignUpResponseWithDefault extends SignUpResponse, ResDefault {}
