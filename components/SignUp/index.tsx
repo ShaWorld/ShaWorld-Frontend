@@ -60,11 +60,7 @@ const SignUp: FC = () => {
 
   function checkPasswordFormat(): boolean {
     const passwordRegExp: RegExp = new RegExp(/^[a-z0-9!@#$%^&*]{8,20}$/);
-    if (
-      signUpForm.password.length < 8 ||
-      signUpForm.password.length > 20 ||
-      !passwordRegExp.test(signUpForm.password)
-    ) {
+    if (!passwordRegExp.test(signUpForm.password)) {
       changePasswordErrorText("8 ~ 20자 (알파벳 소문자, 숫자, 특수기호)");
       return true;
     }
