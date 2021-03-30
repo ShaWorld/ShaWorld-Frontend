@@ -1,5 +1,3 @@
-export interface ChangeInfoResponse {
-  changedNickname?: string;
-  changedPassword?: string;
-  changedProfile?: string;
+export interface ChangeNicknameRequest {
+  changedNickname: string;
 }
