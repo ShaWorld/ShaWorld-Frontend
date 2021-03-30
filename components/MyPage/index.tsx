@@ -4,12 +4,13 @@ import useUser from "../../utils/hooks/user";
 import Header from "../Header";
 import * as S from "./style";
 import useModal from "../../utils/hooks/modal";
+import { changeNickname } from "../../utils/api/mypage";
 
 const MyPage: FC = () => {
   const router = useRouter();
-  const [changedNickname, setChangedNickname] = useState("");
-  const [changingNickname, setChangingNickname] = useState(false);
-  const [nicknameErrorText, setNicknameErrorText] = useState("");
+  const [changedNickname, setChangedNickname] = useState<string>("");
+  const [changingNickname, setChangingNickname] = useState<boolean>(false);
+  const [nicknameErrorText, setNicknameErrorText] = useState<string>("");
   const {
     setState: { modalOn },
   } = useModal();
@@ -28,12 +29,37 @@ const MyPage: FC = () => {
     setChangingNickname(true);
   };
 
-  const onSubmitChangedNickname = () => {
+  const onSubmitChangedNickname = (): Promise<object> => {
     if (!changedNickname) {
       setNicknameErrorText("닉네임을 입력하세요.");
       return;
+    } else if (changedNickname.length < 2 || changedNickname.length > 8) {
+      setNicknameErrorText("2 ~ 8자");
+      return;
     }
-    setChangingNickname(false);
+    changeNickname(changedNickname).then(
+      (res) => {
+        setChangingNickname(false);
+        location.reload();
+        return Promise.resolve(res);
+      },
+      (err) => {
+        switch (err.response.status) {
+          case 409: {
+            switch (err.response.data.code) {
+              case "NICKNAME_DUPLICATION":
+                setNicknameErrorText("이미 사용중인 닉네임입니다.");
+                return;
+              default:
+                console.log("알 수 없는 오류");
+            }
+          }
+          default:
+            console.log("알 수 없는 오류");
+        }
+        return Promise.reject(err.response);
+      }
+    );
   };
 
   const logout = () => {
@@ -73,6 +99,11 @@ const MyPage: FC = () => {
                     <S.InfoFixButton onClick={onSubmitChangedNickname}>
                       완료
                     </S.InfoFixButton>
+                    <S.InfoCancelButton
+                      onClick={() => setChangingNickname(false)}
+                    >
+                      취소
+                    </S.InfoCancelButton>
                   </S.InfoTextButtonWrapper>
                   <S.nicknameErrorText isError={nicknameErrorText}>
                     {nicknameErrorText}

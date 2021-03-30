@@ -105,6 +105,20 @@ export const InfoFixButton = styled.button`
   cursor: pointer;
 `;
 
+export const InfoCancelButton = styled.button`
+  width: 111px;
+  height: 50px;
+  background: #fff;
+  color: #4f4646;
+  border: 1px solid #4f4646;
+  margin-left: 20px;
+  margin-top: 10px;
+  border-radius: 10px;
+  font-size: 20px;
+  outline: none;
+  cursor: pointer;
+`;
+
 export const nicknameErrorText = styled.p`
   color: red;
   margin: 0;
