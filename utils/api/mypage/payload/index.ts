@@ -1,3 +1,5 @@
-export interface ChangeNicknameRequest {
-  changedNickname: string;
+export interface ChangePasswordRequest {
+  currentPassword: string;
+  changePassword: string;
+  changePasswordConfirm: string;
 }
