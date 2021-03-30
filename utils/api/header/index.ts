@@ -5,7 +5,7 @@ import { UserInfoResponse } from "./payload";
 export const getUserInfo = async (): Promise<UserInfoResponse> => {
   const { data } = await axios.get<UserInfoResponse>(BASE_URL + "/user", {
     headers: {
-      TOKEN_NAME: localStorage.getItem(TOKEN_NAME),
+      Authorization: localStorage.getItem(TOKEN_NAME),
     },
   });
 
