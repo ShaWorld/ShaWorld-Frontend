@@ -123,7 +123,9 @@ const MyPage: FC = () => {
               <S.InfoText>{userEmail}</S.InfoText>
             </S.InfoWrapper>
             <S.ButtonWrapper>
-              <S.ChangePasswordButton>비밀번호 변경</S.ChangePasswordButton>
+              <S.ChangePasswordButton onClick={() => router.push("/password")}>
+                비밀번호 변경
+              </S.ChangePasswordButton>
               <S.LogoutButton onClick={logout}>로그아웃</S.LogoutButton>
             </S.ButtonWrapper>
             <S.SignOutButton onClick={() => modalOn("signOutConfirm")}>
