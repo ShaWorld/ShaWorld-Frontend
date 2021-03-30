@@ -1,5 +1,5 @@
 import axios from "axios";
-import { BASE_URL } from "../BASE";
+import { BASE_URL, TOKEN_NAME } from "../BASE";
 
 export const changeNickname = async (changedNickname: string) => {
   const res = await axios.patch(
@@ -9,7 +9,7 @@ export const changeNickname = async (changedNickname: string) => {
     },
     {
       headers: {
-        Authorization: localStorage.getItem("Authorization"),
+        TOKEN_NAME: localStorage.getItem(TOKEN_NAME),
       },
     }
   );
@@ -19,7 +19,7 @@ export const changeNickname = async (changedNickname: string) => {
 export const signOut = async () => {
   await axios.delete(BASE_URL + "/user/deleteuser", {
     headers: {
-      Authorization: localStorage.getItem("Authorization"),
+      TOKEN_NAME: localStorage.getItem(TOKEN_NAME),
     },
   });
 };
