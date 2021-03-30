@@ -1,9 +1,19 @@
 import axios from "axios";
 import { BASE_URL } from "../BASE";
-import { ChangeInfoResponse } from "./payload";
 
-export const changeInfo = async (data: ChangeInfoResponse) => {
-  return;
+export const changeNickname = async (changedNickname: string) => {
+  const res = await axios.patch(
+    BASE_URL + "/user/nickname",
+    {
+      changedNickname: changedNickname,
+    },
+    {
+      headers: {
+        Authorization: localStorage.getItem("Authorization"),
+      },
+    }
+  );
+  return res;
 };
 
 export const signOut = async () => {
