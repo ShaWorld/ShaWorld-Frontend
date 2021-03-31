@@ -4,13 +4,14 @@ import useUser from "../../utils/hooks/user";
 import Header from "../Header";
 import * as S from "./style";
 import useModal from "../../utils/hooks/modal";
-import { changeNickname } from "../../utils/api/mypage";
+import { changeNickname, changeProfile } from "../../utils/api/mypage";
 
 const MyPage: FC = () => {
   const router = useRouter();
   const [changedNickname, setChangedNickname] = useState<string>("");
   const [changingNickname, setChangingNickname] = useState<boolean>(false);
   const [nicknameErrorText, setNicknameErrorText] = useState<string>("");
+  const [profile, setProfile] = useState<File>();
   const {
     setState: { modalOn },
   } = useModal();
@@ -62,6 +63,16 @@ const MyPage: FC = () => {
     );
   };
 
+  const onSubmitProfile = (e: React.ChangeEvent<HTMLInputElement>) => {
+    changeProfile(e.target.files[0]).then(
+      (res) => {
+        location.reload();
+        return Promise.resolve(res);
+      },
+      () => {}
+    );
+  };
+
   const logout = () => {
     localStorage.removeItem("Authorization");
     setUserInfo({
@@ -78,13 +89,23 @@ const MyPage: FC = () => {
       <S.Wrapper>
         <S.Title>마이페이지</S.Title>
         <S.ContentsWrapper>
-          <S.Img
-            src={
-              userProfile != null
-                ? userProfile
-                : "https://i.pinimg.com/474x/83/fc/4c/83fc4c6dca8298dc8e03ba63d35a9cae.jpg"
-            }
-          />
+          <S.ImgContainer>
+            <S.Img
+              src={
+                userProfile != null
+                  ? userProfile
+                  : "https://i.pinimg.com/474x/83/fc/4c/83fc4c6dca8298dc8e03ba63d35a9cae.jpg"
+              }
+            />
+            <S.ImgLabel>
+              이미지 변경
+              <S.ImgInput
+                type="file"
+                accept="image/png, image/jpeg"
+                onChange={onSubmitProfile}
+              />
+            </S.ImgLabel>
+          </S.ImgContainer>
           <S.InfoFormWrapper>
             <S.InfoWrapper>
               <S.InfoTitle>닉네임</S.InfoTitle>

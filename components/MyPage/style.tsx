@@ -32,6 +32,11 @@ export const ContentsWrapper = styled.div`
   display: flex;
 `;
 
+export const ImgContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
 export const Img = styled.img`
   width: 252px;
   height: 252px;
@@ -39,6 +44,25 @@ export const Img = styled.img`
   border: 3px solid #4f4646;
   margin-top: 37px;
   margin-left: 54px;
+`;
+
+export const ImgLabel = styled.label`
+  width: 100px;
+  height: 50px;
+  background-color: #4f4646;
+  display: flex;
+  color: #fff;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  text-align: center;
+  border-radius: 16px;
+  margin-top: 35px;
+  margin-left: 130px;
+`;
+
+export const ImgInput = styled.input`
+  display: none;
 `;
 
 export const InfoFormWrapper = styled.div`
