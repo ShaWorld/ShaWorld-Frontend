@@ -34,6 +34,19 @@ export const changePassword = async (data: ChangePasswordRequest) => {
   return res;
 };
 
+export const changeProfile = async (profile: File) => {
+  var formData = new FormData();
+  formData.append("profile", profile);
+
+  const res = await axios.patch(BASE_URL + "/user/profile", formData, {
+    headers: {
+      Authorization: localStorage.getItem(TOKEN_NAME),
+    },
+  });
+
+  return res;
+};
+
 export const signOut = async () => {
   await axios.delete(BASE_URL + "/user/deleteuser", {
     headers: {
