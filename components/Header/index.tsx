@@ -42,7 +42,9 @@ const Header: FC = () => {
           </S.HeaderRightWrapper>
         ) : (
           <S.HeaderRightWrapper>
-            <S.HeaderPost>대여 상품 등록</S.HeaderPost>
+            <S.HeaderPost onClick={() => router.push("/post")}>
+              대여 상품 등록
+            </S.HeaderPost>
             <S.HeaderProfileImg
               src={
                 state.userProfile
