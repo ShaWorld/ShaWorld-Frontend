@@ -30,7 +30,7 @@ export const PostThumbnail = styled.img`
   border-radius: 19px;
 `;
 
-export const ThumbnailButtonWrapper = styled.div`
+export const ThumbnailButtonWrapper = styled.label`
   width: 251px;
   height: 83px;
   display: flex;
@@ -39,7 +39,11 @@ export const ThumbnailButtonWrapper = styled.div`
   margin-top: 21px;
 `;
 
-export const ThumbnailUploadBtn = styled.button`
+export const ThumbnailInputBox = styled.input`
+  display: none;
+`;
+
+export const ThumbnailUploadBtn = styled.div`
   width: 99px;
   height: 83px;
   background-color: #4f4646;
@@ -48,6 +52,9 @@ export const ThumbnailUploadBtn = styled.button`
   color: #fff;
   cursor: pointer;
   outline: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const ThumbnailRemoveBtn = styled.button`
@@ -83,6 +90,14 @@ export const TitleInput = styled.input`
   }
 `;
 
+export const ErrorText = styled.p<{ isError: boolean }>`
+  padding-left: 10px;
+  margin: 0;
+  height: 16px;
+  color: red;
+  visibility: ${({ isError }) => (isError ? "inherit" : "hidden")};
+`;
+
 export const AddressInput = styled.input`
   width: 365px;
   height: 40px;
@@ -92,7 +107,7 @@ export const AddressInput = styled.input`
   padding-left: 15px;
   outline: none;
   font-size: 18px;
-  margin-top: 20px;
+  margin-top: 10px;
 
   &::placeholder {
     font-size: 20px;
