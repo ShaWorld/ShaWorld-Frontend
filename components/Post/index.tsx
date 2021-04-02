@@ -4,7 +4,7 @@ import ImageIcon from "@material-ui/icons/Image";
 import DeleteIcon from "@material-ui/icons/Delete";
 import * as S from "./style";
 import { createPost } from "../../utils/api/post";
-
+import useModal from "../../utils/hooks/modal";
 interface IPostForm {
   thumbnail: File;
   title: string;
@@ -26,6 +26,9 @@ const Post: FC = () => {
   const [addressErrorText, setAddressErrorText] = useState<string>("");
   const [detailErrorText, setDetailErrorText] = useState<string>("");
   const [priceErrorText, setPriceErrorText] = useState<string>("");
+  const {
+    setState: { modalOn },
+  } = useModal();
 
   const onChangePostThumbnail = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.value == "") return;
@@ -122,7 +125,38 @@ const Post: FC = () => {
 
   const onSubmitPostForm = () => {
     if (callFormatCheck()) return;
-    createPost(postForm);
+    createPost(postForm).then(
+      () => {
+        modalOn("completeCreatePostAlert");
+      },
+      (err) => {
+        switch (err.response.status) {
+          case 401: {
+            switch (err.response.data.code) {
+              case "TOKEN_EXPRIATION":
+                alert("만료된 토큰입니다.");
+                break;
+              case "INVALID_TOKEN":
+                alert("유효하지 않은 토큰입니다.");
+                break;
+              default:
+                break;
+            }
+          }
+          case 404: {
+            switch (err.response.data.code) {
+              case "USER_NOT_FOUND":
+                alert("존재하지 않는 사용자입니다.");
+                break;
+              default:
+                break;
+            }
+          }
+          default:
+            break;
+        }
+      }
+    );
   };
 
   return (
