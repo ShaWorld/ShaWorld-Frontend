@@ -6,9 +6,11 @@ export const createPost = async (data: CreatePostRequest) => {
   var formData = new FormData();
   formData.append("thumbnail", data.thumbnail);
 
+  const date = new Date();
+
   const res = await axios.post(
     BASE_URL +
-      `/post/create?title=${data.title}&address=${data.address}&detail=${data.detail}&price=${data.price}&date=2021-04-01`,
+      `/post/create?title=${data.title}&address=${data.address}&detail=${data.detail}&price=${data.price}&date=2021-04-02T13:13:13`,
     formData,
     {
       headers: {
