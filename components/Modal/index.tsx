@@ -3,12 +3,14 @@ import useModal from "../../utils/hooks/modal";
 import SignUpAlertModal from "./SignUpAlertModal";
 import SignOutConfirmModal from "./SignOutConfirmModal";
 import PasswordChangeAlertModal from "./PasswordChangeAlertModal";
+import CompleteCreatePostAlertModal from "./CompleteCreatePostAlertModal";
 import * as S from "./style";
 
 const MODAL_TYPE = {
   signUpAlertModal: "signUpAlert",
   signOutConfirmModal: "signOutConfirm",
   passwordChangeAlertModal: "passwordChangeAlert",
+  completeCreatePostAlertModal: "completeCreatePostAlert",
 };
 
 const Modal = () => {
@@ -38,6 +40,11 @@ const Modal = () => {
             )}
             {state.type === MODAL_TYPE.passwordChangeAlertModal ? (
               <PasswordChangeAlertModal deleteModal={deleteModal} />
+            ) : (
+              ""
+            )}
+            {state.type === MODAL_TYPE.completeCreatePostAlertModal ? (
+              <CompleteCreatePostAlertModal deleteModal={deleteModal} />
             ) : (
               ""
             )}
