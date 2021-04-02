@@ -88,11 +88,32 @@ const PasswordModification: FC = () => {
                 setCurrentPasswordErrorText("비밀번호가 일치하지 않습니다.");
                 break;
               default:
-                console.log("알 수 없는 오류");
+                break;
+            }
+          }
+          case 401: {
+            switch (err.response.data.code) {
+              case "TOKEN_EXPRIATION":
+                alert("만료된 토큰입니다.");
+                break;
+              case "INVALID_TOKEN":
+                alert("유효하지 않은 토큰입니다.");
+                break;
+              default:
+                break;
+            }
+          }
+          case 404: {
+            switch (err.response.data.code) {
+              case "USER_NOT_FOUND":
+                alert("존재하지 않는 사용자입니다.");
+                break;
+              default:
+                break;
             }
           }
           default:
-            console.log("알 수 없는 오류");
+            break;
         }
       }
     );
