@@ -7,10 +7,15 @@ export const createPost = async (data: CreatePostRequest) => {
   formData.append("thumbnail", data.thumbnail);
 
   const date = new Date();
+  const checkedMonth =
+    date.getMonth() + 1 < 10 ? `0${date.getMonth() + 1}` : date.getMonth() + 1;
+  const checkedDate =
+    date.getDate() < 10 ? `0${date.getDate()}` : date.getDate();
+  const requestDate = `${date.getFullYear()}-${checkedMonth}-${checkedDate}T${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
 
   const res = await axios.post(
     BASE_URL +
-      `/post/create?title=${data.title}&address=${data.address}&detail=${data.detail}&price=${data.price}&date=2021-04-02T13:13:13`,
+      `/post/create?title=${data.title}&address=${data.address}&detail=${data.detail}&price=${data.price}&date=${requestDate}`,
     formData,
     {
       headers: {
