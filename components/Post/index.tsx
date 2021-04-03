@@ -212,6 +212,7 @@ const Post: FC = () => {
             name="price"
             placeholder="가격(일일 요금)"
             onChange={onChangePostForm}
+            autoComplete="off"
           />
           <S.ErrorText isError={priceErrorText}>{priceErrorText}</S.ErrorText>
           <S.PostButton onClick={onSubmitPostForm}>생성</S.PostButton>
