@@ -1,17 +1,39 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import * as S from "./style";
 
-const Post: FC = () => {
+interface Props {
+  id: number;
+  thumbnail: string;
+  title: string;
+  price: number;
+  nickname: string;
+  address: string;
+}
+
+const Post: FC<Props> = ({
+  id,
+  thumbnail,
+  title,
+  price,
+  nickname,
+  address,
+}) => {
   return (
     <S.Container>
-      <S.Thumbnail src="https://www.rhsmith.umd.edu/files/Images/Programs/Plus1/plus-1-1.png" />
+      <S.Thumbnail
+        src={
+          thumbnail
+            ? thumbnail
+            : "https://s1.dmcdn.net/v/33FvQ1KB-ZLki-Xwt/x1080"
+        }
+      />
       <S.TextWrapper>
-        <S.Title>Article Title</S.Title>
+        <S.Title>{title}</S.Title>
         <S.PriceAndNicknameWrapper>
-          <S.Price>1000원/일</S.Price>
-          <S.Nickname>NickName</S.Nickname>
+          <S.Price>{price}원/일</S.Price>
+          <S.Nickname>{nickname}</S.Nickname>
         </S.PriceAndNicknameWrapper>
-        <S.Address>대전광역시 서구 둔산동 갤러리아 타임월드</S.Address>
+        <S.Address>{address}</S.Address>
       </S.TextWrapper>
     </S.Container>
   );

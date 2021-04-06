@@ -9,6 +9,7 @@ export const Container = styled.div`
   align-items: center;
   margin-right: 80px;
   margin-bottom: 25px;
+  cursor: pointer;
 
   &:nth-child(4n) {
     margin-right: 0;
