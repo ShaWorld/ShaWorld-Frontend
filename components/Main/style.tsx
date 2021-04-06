@@ -32,4 +32,11 @@ export const PostWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+
+  &::after {
+    content: "";
+    flex-basis: 0;
+    flex-grow: 1;
+    flex-wrap: 1;
+  }
 `;
