@@ -2,16 +2,22 @@ import axios from "axios";
 import { BASE_URL, TOKEN_NAME } from "../BASE";
 import { CreatePostRequest } from "./payload";
 
+const fillZeroToString = (date: number) => {
+  return date.toString().padStart(2, "0");
+};
+
 export const createPost = async (data: CreatePostRequest) => {
   var formData = new FormData();
   formData.append("thumbnail", data.thumbnail);
 
   const date = new Date();
-  const checkedMonth =
-    date.getMonth() + 1 < 10 ? `0${date.getMonth() + 1}` : date.getMonth() + 1;
-  const checkedDate =
-    date.getDate() < 10 ? `0${date.getDate()}` : date.getDate();
-  const requestDate = `${date.getFullYear()}-${checkedMonth}-${checkedDate}T${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+  const requestDate = `${date.getFullYear()}-${fillZeroToString(
+    date.getMonth() + 1
+  )}-${fillZeroToString(date.getDate())}T${fillZeroToString(
+    date.getHours()
+  )}:${fillZeroToString(date.getMinutes())}:${fillZeroToString(
+    date.getSeconds()
+  )}`;
 
   const res = await axios.post(
     BASE_URL +
