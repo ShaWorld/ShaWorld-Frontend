@@ -16,7 +16,7 @@ export const Wrapper = styled.div`
 `;
 
 export const LeftWrapper = styled.div`
-  width: 495px;
+  width: 455px;
   height: 100%;
   padding-left: 95px;
   display: flex;
@@ -69,7 +69,7 @@ export const ThumbnailRemoveBtn = styled.button`
 `;
 
 export const RightWrapper = styled.div`
-  width: 705px;
+  width: 745px;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -160,7 +160,7 @@ export const PostButton = styled.button`
   border: none;
   font-size: 20px;
   margin-left: 604px;
-  margin-top: 50px;
+  margin-top: 30px;
   cursor: pointer;
   outline: none;
 `;
