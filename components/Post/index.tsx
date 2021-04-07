@@ -5,6 +5,7 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import * as S from "./style";
 import { createPost } from "../../utils/api/post";
 import useModal from "../../utils/hooks/modal";
+
 interface IPostForm {
   thumbnail: File;
   title: string;
@@ -167,7 +168,7 @@ const Post: FC = () => {
           <S.PostThumbnail
             src={
               postForm.thumbnail === null
-                ? "https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg"
+                ? "https://s1.dmcdn.net/v/33FvQ1KB-ZLki-Xwt/x1080"
                 : thumbnail
             }
           />
