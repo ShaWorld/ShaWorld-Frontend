@@ -49,7 +49,7 @@ const Header: FC = () => {
               src={
                 state.userProfile
                   ? state.userProfile
-                  : "http://image.auction.co.kr/itemimage/1b/7d/19/1b7d19f331.jpg"
+                  : "https://s1.dmcdn.net/v/33FvQ1KB-ZLki-Xwt/x1080"
               }
             />
             <S.HeaderNickname onClick={() => router.push("/mypage")}>
