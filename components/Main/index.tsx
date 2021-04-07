@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useState } from "react";
 import Header from "../Header";
-import Post from "../common/Post";
+import PostItem from "../common/PostItem";
 import * as S from "./style";
 import { getLatestPosts } from "../../utils/api/main";
 import { GetLatestPosts } from "../../utils/api/main/payload";
@@ -75,7 +75,7 @@ const Main: FC = () => {
         <S.PostWrapper>
           {postList != []
             ? postList.map((item) => (
-                <Post
+                <PostItem
                   key={item.postId}
                   id={item.postId}
                   thumbnail={item.postThumbnail}
