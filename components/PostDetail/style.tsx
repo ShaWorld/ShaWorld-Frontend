@@ -30,44 +30,6 @@ export const PostThumbnail = styled.img`
   border-radius: 19px;
 `;
 
-export const ThumbnailButtonWrapper = styled.label`
-  width: 251px;
-  height: 83px;
-  display: flex;
-  justify-content: space-between;
-  margin-left: 24px;
-  margin-top: 21px;
-`;
-
-export const ThumbnailInputBox = styled.input`
-  display: none;
-`;
-
-export const ThumbnailUploadBtn = styled.div`
-  width: 99px;
-  height: 83px;
-  background-color: #4f4646;
-  border-radius: 20px;
-  border: none;
-  color: #fff;
-  cursor: pointer;
-  outline: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-export const ThumbnailRemoveBtn = styled.button`
-  width: 99px;
-  height: 83px;
-  background-color: #fff;
-  border-radius: 20px;
-  border: 1px solid #4f4646;
-  color: #4f4646;
-  cursor: pointer;
-  outline: none;
-`;
-
 export const Date = styled.p`
   width: 300px;
   color: #4f4646;

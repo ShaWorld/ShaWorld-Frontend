@@ -1,42 +1,105 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import Header from "../Header";
 import ImageIcon from "@material-ui/icons/Image";
 import DeleteIcon from "@material-ui/icons/Delete";
 import * as S from "./style";
-
-const detail = `토르의 망치 대여해 드립니다.
-가격 네고 가능합니다. 
-최대 10일까지 대여 가능합니다.`;
+import { getPostDetailInfo } from "../../utils/api/postdetail";
+import { GetPostDetailInfo } from "../../utils/api/postdetail/payload";
 
 const PostDetail = () => {
+  const router = useRouter();
+  const { pid } = router.query;
+  const [data, setData] = useState<GetPostDetailInfo>({
+    postThumbnail: "",
+    postTitle: "",
+    postAuthor: "",
+    postAddress: "",
+    postDetail: "",
+    postPrice: 0,
+    postDate: "",
+  });
+
+  useEffect(() => {
+    if (!pid) {
+      router.push("/");
+      return;
+    }
+    getData();
+  }, []);
+
+  const getData = () => {
+    getPostDetailInfo(pid).then(
+      (res) => {
+        setData({
+          ...res,
+          postDate: setDateToString(res.postDate),
+        });
+        Promise.resolve(res);
+      },
+      (err) => {
+        switch (err.response.status) {
+          case 401: {
+            switch (err.response.data.code) {
+              case "TOKEN_EXPRIATION":
+                alert("만료된 토큰입니다.");
+                break;
+              case "INVALID_TOKEN":
+                alert("유효하지 않은 토큰입니다.");
+                break;
+              default:
+                break;
+            }
+          }
+          case 404: {
+            switch (err.response.data.code) {
+              case "USER_NOT_FOUND":
+                alert("존재하지 않는 사용자입니다.");
+                break;
+              default:
+                break;
+            }
+          }
+          default:
+            break;
+        }
+        Promise.reject(err);
+      }
+    );
+  };
+
+  const setDateToString = (date: string) => {
+    let localArray = date.split("-"),
+      dateArray = localArray[2].split("T");
+
+    return `${localArray[0]}년 ${localArray[1]}월 ${dateArray[0]}일 ${dateArray[1]}`;
+  };
+
   return (
     <S.Container>
       <Header />
       <S.Wrapper>
         <S.LeftWrapper>
-          <S.PostThumbnail src="https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg" />
-          <S.ThumbnailButtonWrapper>
-            <S.ThumbnailUploadBtn>
-              <S.ThumbnailInputBox type="file" accept="image/png, image/jpeg" />
-              <ImageIcon fontSize="large" />
-            </S.ThumbnailUploadBtn>
-            <S.ThumbnailRemoveBtn>
-              <DeleteIcon fontSize="large" />
-            </S.ThumbnailRemoveBtn>
-          </S.ThumbnailButtonWrapper>
-          <S.Date>2021년 3월 18일 (목) 22:41</S.Date>
+          <S.PostThumbnail
+            src={
+              data.postThumbnail
+                ? data.postThumbnail
+                : "https://s1.dmcdn.net/v/33FvQ1KB-ZLki-Xwt/x1080"
+            }
+          />
+          <S.Date>{data.postDate}</S.Date>
         </S.LeftWrapper>
         <S.RightWrapper>
-          <S.Title>토르의 망치 대여해 드립니다.</S.Title>
-          <S.Nickname>쿠키앤크림진짬뽕</S.Nickname>
-          <S.Address>대전광역시 서구 둔산동 갤러리아 타임월드</S.Address>
+          <S.Title>{data.postTitle}</S.Title>
+          <S.Nickname>{data.postAuthor}</S.Nickname>
+          <S.Address>{data.postAddress}</S.Address>
           <S.DetailTitle>상세정보</S.DetailTitle>
-          <S.Detail>{detail}</S.Detail>
+          <S.Detail>{data.postDetail}</S.Detail>
           <S.RightBottomWrapper>
             <S.ButtonWrapper>
               <S.SendMessageButton>메세지 보내기</S.SendMessageButton>
             </S.ButtonWrapper>
-            <S.Price>1000원/일</S.Price>
+            <S.Price>{data.postPrice}원/일</S.Price>
           </S.RightBottomWrapper>
         </S.RightWrapper>
       </S.Wrapper>
