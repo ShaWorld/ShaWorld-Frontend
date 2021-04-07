@@ -1,4 +1,5 @@
-import React, { FC, useEffect } from "react";
+import React, { FC } from "react";
+import { useRouter } from "next/router";
 import * as S from "./style";
 
 interface Props {
@@ -10,7 +11,7 @@ interface Props {
   address: string;
 }
 
-const Post: FC<Props> = ({
+const PostItem: FC<Props> = ({
   id,
   thumbnail,
   title,
@@ -18,8 +19,10 @@ const Post: FC<Props> = ({
   nickname,
   address,
 }) => {
+  const router = useRouter();
+
   return (
-    <S.Container>
+    <S.Container onClick={() => router.push(`/post/${id}`)}>
       <S.Thumbnail
         src={
           thumbnail
@@ -39,4 +42,4 @@ const Post: FC<Props> = ({
   );
 };
 
-export default Post;
+export default PostItem;
