@@ -114,7 +114,7 @@ const MyPage: FC = () => {
               src={
                 userProfile != null
                   ? userProfile
-                  : "https://i.pinimg.com/474x/83/fc/4c/83fc4c6dca8298dc8e03ba63d35a9cae.jpg"
+                  : "https://s1.dmcdn.net/v/33FvQ1KB-ZLki-Xwt/x1080"
               }
             />
             <S.ImgLabel>
