@@ -51,9 +51,25 @@ export const Title = styled.h1`
   margin-bottom: 15px;
 `;
 
+export const AuthorWrapper = styled.div`
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+`;
+
+export const Profile = styled.img`
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+`;
+
 export const Nickname = styled.p`
   color: #4f4646;
   margin: 0;
+  margin-left: 15px;
+  font-size: 20px;
 `;
 
 export const Address = styled.p`
