@@ -1,7 +1,8 @@
 export interface GetPostDetailInfo {
   postThumbnail: string;
   postTitle: string;
-  postAuthor: string;
+  postAuthorProfile: string;
+  postAuthorNickname: string;
   postAddress: string;
   postDetail: string;
   postPrice: number;
