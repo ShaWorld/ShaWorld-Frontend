@@ -16,3 +16,11 @@ export const getPostDetailInfo = async (
 
   return data;
 };
+
+export const deletePost = async (id: string | string[]): Promise<void> => {
+  await axios.get(BASE_URL + `/post/delete/${id}`, {
+    headers: {
+      Authorization: localStorage.getItem(TOKEN_NAME),
+    },
+  });
+};
