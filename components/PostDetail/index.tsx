@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Header from "../Header";
-import ImageIcon from "@material-ui/icons/Image";
-import DeleteIcon from "@material-ui/icons/Delete";
 import * as S from "./style";
+import useModal from "../../utils/hooks/modal";
+import useUser from "../../utils/hooks/user";
 import { getPostDetailInfo } from "../../utils/api/postdetail";
 import { GetPostDetailInfo } from "../../utils/api/postdetail/payload";
 
@@ -13,12 +13,19 @@ const PostDetail = () => {
   const [data, setData] = useState<GetPostDetailInfo>({
     postThumbnail: "",
     postTitle: "",
-    postAuthor: "",
+    postAuthorProfile: "",
+    postAuthorNickname: "",
     postAddress: "",
     postDetail: "",
     postPrice: 0,
     postDate: "",
   });
+  const {
+    setState: { modalOn },
+  } = useModal();
+  const {
+    state: { userNickname },
+  } = useUser();
 
   useEffect(() => {
     if (!pid) {
@@ -91,13 +98,30 @@ const PostDetail = () => {
         </S.LeftWrapper>
         <S.RightWrapper>
           <S.Title>{data.postTitle}</S.Title>
-          <S.Nickname>{data.postAuthor}</S.Nickname>
-          <S.Address>{data.postAddress}</S.Address>
+          <S.AuthorWrapper>
+            <S.Profile
+              src={
+                data.postAuthorProfile
+                  ? data.postAuthorProfile
+                  : "https://s1.dmcdn.net/v/33FvQ1KB-ZLki-Xwt/x1080"
+              }
+            />
+            <S.Nickname>{data.postAuthorNickname}</S.Nickname>
+          </S.AuthorWrapper>
+          <S.Address>주소: {data.postAddress}</S.Address>
           <S.DetailTitle>상세정보</S.DetailTitle>
           <S.Detail>{data.postDetail}</S.Detail>
           <S.RightBottomWrapper>
             <S.ButtonWrapper>
-              <S.SendMessageButton>메세지 보내기</S.SendMessageButton>
+              {data.postAuthorNickname != userNickname ? (
+                <S.SendMessageButton>메세지 보내기</S.SendMessageButton>
+              ) : (
+                <S.SendMessageButton
+                  onClick={() => modalOn("deletePostConfirm")}
+                >
+                  삭제
+                </S.SendMessageButton>
+              )}
             </S.ButtonWrapper>
             <S.Price>{data.postPrice}원/일</S.Price>
           </S.RightBottomWrapper>
