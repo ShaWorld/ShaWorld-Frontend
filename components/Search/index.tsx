@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { FC, useEffect, useState } from "react";
 import PostItem from "../common/PostItem";
 import Header from "../Header";
-import { GetLatestPosts } from "../../utils/api/search/payload";
+import { SearchLatestPosts } from "../../utils/api/search/payload";
 import { searchLatestPosts } from "../../utils/api/search";
 import * as S from "./style";
 import useSearch from "../../utils/hooks/search";
@@ -11,7 +11,7 @@ const Search: FC = () => {
   let page = 0;
 
   const router = useRouter();
-  const [postList, setPostList] = useState<GetLatestPosts[]>([]);
+  const [postList, setPostList] = useState<SearchLatestPosts[]>([]);
   const [fetching, setFetching] = useState<boolean>(false);
   const [isEmpty, setIsEmpty] = useState<boolean>(false);
   const {
