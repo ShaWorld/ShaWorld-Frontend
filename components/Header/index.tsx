@@ -1,15 +1,20 @@
-import React, { FC, useEffect } from "react";
+import React, { FC, useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { getUserInfo } from "../../utils/api/header";
 import * as S from "./style";
 import useUser from "../../utils/hooks/user";
+import useSearch from "../../utils/hooks/search";
 
 const Header: FC = () => {
+  const [searchKeyword, setSearchKeyword] = useState<string>("");
   const router = useRouter();
   const {
     state,
     setState: { setUserInfo },
   } = useUser();
+  const {
+    setState: { setKeyword },
+  } = useSearch();
 
   useEffect(() => {
     getInfo();
@@ -24,12 +29,29 @@ const Header: FC = () => {
     );
   };
 
+  const onChangeKeyword = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchKeyword(e.target.value);
+  };
+
+  const KeyPressSearch = (e: React.KeyboardEvent) => {
+    if (searchKeyword == "") return;
+    if (e.key == "Enter") {
+      setKeyword(searchKeyword);
+      router.push(`/search`);
+    }
+  };
+
   return (
     <S.HeaderContainer>
       <S.HeaderContentsWrapper>
         <S.HeaderLeftWrapper>
           <S.HeaderLogo onClick={() => router.push("/")}>로고</S.HeaderLogo>
-          <S.HeaderSearchBar type="text" placeholder="검색" />
+          <S.HeaderSearchBar
+            type="text"
+            placeholder="검색"
+            onChange={onChangeKeyword}
+            onKeyDown={KeyPressSearch}
+          />
         </S.HeaderLeftWrapper>
         {state.userNickname === "" ? (
           <S.HeaderRightWrapper>
