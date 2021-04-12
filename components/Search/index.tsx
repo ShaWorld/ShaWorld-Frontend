@@ -11,6 +11,7 @@ const Search: FC = () => {
   let page = 0;
 
   const router = useRouter();
+  const [prevKeyword, setPrevKeyword] = useState<string>("");
   const [postList, setPostList] = useState<SearchLatestPosts[]>([]);
   const [fetching, setFetching] = useState<boolean>(false);
   const [isEmpty, setIsEmpty] = useState<boolean>(false);
@@ -32,15 +33,19 @@ const Search: FC = () => {
 
   const serachLatestPostsClient = () => {
     setFetching(true);
+    setPrevKeyword(keyword);
     searchLatestPosts(page++, 12, keyword).then(
       (res) => {
         console.log(res.length === 0);
         if (res.length === 0) {
           setIsEmpty(true);
           setPostList([]);
-        } else {
+        } else if (keyword == prevKeyword) {
           setIsEmpty(false);
           setPostList((prev) => prev.concat(res));
+        } else {
+          setIsEmpty(false);
+          setPostList(res);
         }
         Promise.resolve(res);
       },
