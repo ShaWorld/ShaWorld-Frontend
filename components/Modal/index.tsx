@@ -5,6 +5,7 @@ import SignOutConfirmModal from "./SignOutConfirmModal";
 import PasswordChangeAlertModal from "./PasswordChangeAlertModal";
 import CompleteCreatePostAlertModal from "./CompleteCreatePostAlertModal";
 import DeletePostConfirmModal from "./DeletePostConfirmModal";
+import ApplyRentalConfirmModal from "./ApplyRentalConfirmModal";
 import * as S from "./style";
 
 const MODAL_TYPE = {
@@ -13,6 +14,7 @@ const MODAL_TYPE = {
   passwordChangeAlertModal: "passwordChangeAlert",
   completeCreatePostAlertModal: "completeCreatePostAlert",
   deletePostConfirmModal: "deletePostConfirm",
+  applyRentalConfirmModal: "applyRentalConfirm",
 };
 
 const Modal = () => {
@@ -52,6 +54,11 @@ const Modal = () => {
             )}
             {state.type === MODAL_TYPE.deletePostConfirmModal ? (
               <DeletePostConfirmModal deleteModal={deleteModal} />
+            ) : (
+              ""
+            )}
+            {state.type === MODAL_TYPE.applyRentalConfirmModal ? (
+              <ApplyRentalConfirmModal deleteModal={deleteModal} />
             ) : (
               ""
             )}
