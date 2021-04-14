@@ -114,7 +114,11 @@ const PostDetail = () => {
           <S.RightBottomWrapper>
             <S.ButtonWrapper>
               {data.postAuthorNickname != userNickname ? (
-                <S.SendMessageButton>메세지 보내기</S.SendMessageButton>
+                <S.SendMessageButton
+                  onClick={() => modalOn("applyRentalConfirm")}
+                >
+                  대여 신청하기
+                </S.SendMessageButton>
               ) : (
                 <S.SendMessageButton
                   onClick={() => modalOn("deletePostConfirm")}
