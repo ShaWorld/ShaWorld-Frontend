@@ -181,6 +181,27 @@ export const LogoutButton = styled.button`
   cursor: pointer;
 `;
 
+export const BottomButtonWrapper = styled.div`
+  width: 620px;
+  height: 50px;
+  margin-top: 50px;
+  margin-left: 185px;
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const ConfirmListButton = styled.button`
+  width: 300px;
+  height: 50px;
+  color: #fff;
+  background: #4f4646;
+  border-radius: 10px;
+  font-size: 28px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+`;
+
 export const SignOutButton = styled.button`
   width: 300px;
   height: 50px;
@@ -191,6 +212,4 @@ export const SignOutButton = styled.button`
   border: none;
   outline: none;
   cursor: pointer;
-  margin-top: 50px;
-  margin-left: 505px;
 `;
