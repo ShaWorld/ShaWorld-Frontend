@@ -170,7 +170,7 @@ const MyPage: FC = () => {
               <S.LogoutButton onClick={logout}>로그아웃</S.LogoutButton>
             </S.ButtonWrapper>
             <S.BottomButtonWrapper>
-              <S.ConfirmListButton>신청목록 확인</S.ConfirmListButton>
+              <S.ConfirmListButton onClick={() => router.push('/apply')}>신청목록 확인</S.ConfirmListButton>
               <S.SignOutButton onClick={() => modalOn("signOutConfirm")}>
                 회원 탈퇴
               </S.SignOutButton>
