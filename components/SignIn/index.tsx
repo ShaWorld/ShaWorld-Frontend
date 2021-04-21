@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import * as S from "./style";
 import { SignInRequest } from "../../utils/api/signin/payload";
 import { signIn } from "../../utils/api/signin";
+import Logo from '../../public/Logo.png';
 
 const SignIn: FC = () => {
   const router = useRouter();
@@ -83,7 +84,7 @@ const SignIn: FC = () => {
   return (
     <S.Container>
       <S.MainWrapper>
-        <S.Logo onClick={() => router.push("/")}>로고</S.Logo>
+        <S.Logo src={Logo} onClick={() => router.push("/")} />
         <S.ErrorText isError={errorText}>{errorText}</S.ErrorText>
         <S.InputBox
           type="text"

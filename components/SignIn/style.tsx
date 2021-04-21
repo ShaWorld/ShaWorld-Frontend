@@ -18,16 +18,9 @@ export const MainWrapper = styled.div`
   align-items: center;
 `;
 
-export const Logo = styled.div`
-  width: 200px;
+export const Logo = styled.img`
   height: 100px;
-  background: #4f4646;
   margin-bottom: 23px;
-  color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 30px;
   cursor: pointer;
 `;
 
