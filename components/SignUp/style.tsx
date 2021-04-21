@@ -11,23 +11,16 @@ export const Container = styled.div`
 
 export const MainWrapper = styled.div`
   width: 426px;
-  height: 500px;
+  height: 600px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 `;
 
-export const Logo = styled.div`
-  width: 200px;
+export const Logo = styled.img`
   height: 100px;
-  background: #4f4646;
   margin-bottom: 30px;
-  color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 30px;
   cursor: pointer;
 `;
 

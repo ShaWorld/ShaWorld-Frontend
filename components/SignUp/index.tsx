@@ -3,6 +3,7 @@ import React, { useState, FC } from "react";
 import { signUp } from "../../utils/api/signup";
 import { SignUpRequest } from "../../utils/api/signup/payload";
 import useModal from "../../utils/hooks/modal";
+import Logo from '../../public/Logo.png';
 import * as S from "./style";
 
 const SignUp: FC = () => {
@@ -119,7 +120,7 @@ const SignUp: FC = () => {
   return (
     <S.Container>
       <S.MainWrapper>
-        <S.Logo onClick={() => router.push("/")}>로고</S.Logo>
+        <S.Logo src={Logo} onClick={() => router.push("/")} />
         <S.InputFormWrapper>
           <S.LongInputBox
             type="text"
