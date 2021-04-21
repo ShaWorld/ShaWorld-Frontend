@@ -25,14 +25,8 @@ export const HeaderLeftWrapper = styled.div`
   align-items: center;
 `;
 
-export const HeaderLogo = styled.div`
-  width: 150px;
+export const HeaderLogo = styled.img`
   height: 65px;
-  background: #fff;
-  color: #000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   cursor: pointer;
 `;
 

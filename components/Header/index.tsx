@@ -4,6 +4,7 @@ import { getUserInfo } from "../../utils/api/header";
 import * as S from "./style";
 import useUser from "../../utils/hooks/user";
 import useSearch from "../../utils/hooks/search";
+import Logo from '../../public/Logo.png';
 
 const Header: FC = () => {
   const [searchKeyword, setSearchKeyword] = useState<string>("");
@@ -25,7 +26,7 @@ const Header: FC = () => {
       (res) => {
         setUserInfo(res);
       },
-      () => {}
+      () => { }
     );
   };
 
@@ -45,7 +46,7 @@ const Header: FC = () => {
     <S.HeaderContainer>
       <S.HeaderContentsWrapper>
         <S.HeaderLeftWrapper>
-          <S.HeaderLogo onClick={() => router.push("/")}>로고</S.HeaderLogo>
+          <S.HeaderLogo src={Logo} onClick={() => router.push("/")} />
           <S.HeaderSearchBar
             type="text"
             placeholder="검색"
