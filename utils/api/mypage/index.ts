@@ -50,7 +50,7 @@ export const changeProfile = async (profile: File) => {
 export const signOut = async () => {
   await axios.delete(BASE_URL + "/user/deleteuser", {
     headers: {
-      TOKEN_NAME: localStorage.getItem(TOKEN_NAME),
+      Authorization: localStorage.getItem(TOKEN_NAME),
     },
   });
 };
