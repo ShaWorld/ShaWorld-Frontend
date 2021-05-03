@@ -12,6 +12,12 @@ const SignOutConfirmModal: FC<Props> = ({ deleteModal }) => {
   const { pid } = router.query;
 
   const confirmApplyRental = () => {
+    if (localStorage.getItem("token") === null) {
+      deleteModal();
+      alert("로그인 후 사용 가능한 서비스입니다.");
+      router.push('/signin');
+      return;
+    }
     applyPost(pid).then(
       (res) => {
         Promise.resolve(res);
